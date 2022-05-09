@@ -35,22 +35,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var supertest_1 = __importDefault(require("supertest"));
-var index_1 = __importDefault(require("../index"));
-var request = (0, supertest_1.default)(index_1.default);
-it('gets the api endpoint', function () { return __awaiter(void 0, void 0, void 0, function () {
-    var response;
+exports.findImages = void 0;
+var fs_1 = require("fs");
+var path = require('path');
+var imageDir = '../../images';
+var images = [];
+var findImages = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var files;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, request.get('/api')];
+            case 0: return [4 /*yield*/, fs_1.promises.readdir(path.resolve(__dirname, imageDir))];
             case 1:
-                response = _a.sent();
-                expect(response.status).toBe(200);
+                files = _a.sent();
+                console.log(files);
                 return [2 /*return*/];
         }
     });
-}); });
+}); };
+exports.findImages = findImages;
