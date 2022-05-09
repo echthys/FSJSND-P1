@@ -1,5 +1,9 @@
-// import {sayHello} from '../index';
+import supertest from 'supertest';
+import app from '../index';
 
-// it('Expects Hello', () => {
-//     expect(sayHello()).toEqual('Hello Ethan');
-// });
+const request = supertest(app);
+
+it('gets the api endpoint', async () => {
+  const response = await request.get('/api');
+  expect(response.status).toBe(200);
+});
