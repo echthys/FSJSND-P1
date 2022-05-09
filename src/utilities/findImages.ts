@@ -1,12 +1,13 @@
 import { promises as fs } from 'fs';
-const path = require('path');
+import path from 'path';
 
-const imageDir: string = '../../images';
-const images: string[] = [];
-
-const findImages = async () => {
+async function findImages(imageDir: string) {
+  let images: Array<string> = [];
   const files = await fs.readdir(path.resolve(__dirname, imageDir));
-  console.log(files);
-};
+  files.forEach((image) => {
+    images.push(path.resolve(__dirname, imageDir, image));
+  });
+  return images;
+}
 
 export { findImages };
