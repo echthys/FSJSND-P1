@@ -1,0 +1,47 @@
+{
+  "name": "fsjsnd-p1",
+  "version": "1.0.0",
+  "description": "Udacity Fullstack JavaScript Nano Degree Project One",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine",
+    "lint": "eslint . --ext .ts --fix",
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "tidy": "npm run prettier && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echthys/FSJSND-P1.git"
+  },
+  "keywords": [],
+  "author": "EC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/echthys/FSJSND-P1/issues"
+  },
+  "homepage": "https://github.com/echthys/FSJSND-P1#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.3",
+    "@types/node": "^17.0.31",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "jasmine": "^4.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "supertest": "^6.2.3"
+  }
+}
