@@ -39,25 +39,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findImages = void 0;
-var fs_1 = require("fs");
+exports.convertImages = void 0;
+var sharp_1 = __importDefault(require("sharp"));
 var path_1 = __importDefault(require("path"));
-function findImages(imageDir) {
-    return __awaiter(this, void 0, void 0, function () {
-        var images, files;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    images = [];
-                    return [4 /*yield*/, fs_1.promises.readdir(path_1.default.resolve(__dirname, imageDir))];
-                case 1:
-                    files = _a.sent();
-                    files.forEach(function (image) {
-                        images.push(path_1.default.resolve(__dirname, imageDir, image));
-                    });
-                    return [2 /*return*/, images];
-            }
-        });
+var convertImageFolder = '../converted_images';
+var convertImagePath = path_1.default.resolve(__dirname, convertImageFolder);
+var convertImages = function (images) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        images.forEach(function (image) { return __awaiter(void 0, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log("image: ".concat(image, " being converted"));
+                        return [4 /*yield*/, (0, sharp_1.default)(image)
+                                .resize(200, 200)
+                                .toFile("".concat(convertImagePath, "/200_200-").concat(image.split('/').at(-1)))];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        console.log(process.cwd());
+        return [2 /*return*/];
     });
-}
-exports.findImages = findImages;
+}); };
+exports.convertImages = convertImages;
