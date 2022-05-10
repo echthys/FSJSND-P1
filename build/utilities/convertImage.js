@@ -44,23 +44,20 @@ var sharp_1 = __importDefault(require("sharp"));
 var path_1 = __importDefault(require("path"));
 var convertImageFolder = '../converted_images';
 var convertImagePath = path_1.default.resolve(__dirname, convertImageFolder);
-var convertImages = function (images) { return __awaiter(void 0, void 0, void 0, function () {
+var convertImages = function (images, width, height) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         images.forEach(function (image) { return __awaiter(void 0, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log("image: ".concat(image, " being converted"));
-                        return [4 /*yield*/, (0, sharp_1.default)(image)
-                                .resize(200, 200)
-                                .toFile("".concat(convertImagePath, "/200_200-").concat(image.split('/').at(-1)))];
+                    case 0: return [4 /*yield*/, (0, sharp_1.default)(image)
+                            .resize(width, height)
+                            .toFile("".concat(convertImagePath, "/").concat(width, "-").concat(height, "-").concat(image.split('/').at(-1)))];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
                 }
             });
         }); });
-        console.log(process.cwd());
         return [2 /*return*/];
     });
 }); };

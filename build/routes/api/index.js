@@ -45,13 +45,17 @@ var convertImage_1 = require("../../utilities/convertImage");
 var routes = express_1.default.Router();
 var imageDir = '../../images';
 routes.get('/api', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var images;
+    var params, width, height, images;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, findImages_1.findImages)(imageDir)];
+            case 0:
+                params = req.query;
+                width = parseInt(params.width) ? parseInt(params.width) : 200;
+                height = parseInt(params.height) ? parseInt(params.height) : 200;
+                return [4 /*yield*/, (0, findImages_1.findImages)(imageDir)];
             case 1:
                 images = _a.sent();
-                (0, convertImage_1.convertImages)(images);
+                (0, convertImage_1.convertImages)(images, width, height);
                 res.sendStatus(200);
                 return [2 /*return*/];
         }
