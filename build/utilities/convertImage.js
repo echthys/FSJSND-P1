@@ -42,23 +42,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertImages = void 0;
 var sharp_1 = __importDefault(require("sharp"));
 var path_1 = __importDefault(require("path"));
-var convertImageFolder = '../converted_images';
+var convertImageFolder = '../../public/images';
 var convertImagePath = path_1.default.resolve(__dirname, convertImageFolder);
-var convertImages = function (images, width, height) { return __awaiter(void 0, void 0, void 0, function () {
+var convertImages = function (fileName, width, height) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        images.forEach(function (image) { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, sharp_1.default)(image)
-                            .resize(width, height)
-                            .toFile("".concat(convertImagePath, "/").concat(width, "-").concat(height, "-").concat(image.split('/').at(-1)))];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        return [2 /*return*/];
+        switch (_a.label) {
+            case 0:
+                console.log(fileName);
+                return [4 /*yield*/, (0, sharp_1.default)(path_1.default.resolve(__dirname, "../../images/".concat(fileName)))
+                        .resize(width, height)
+                        .toFile("".concat(convertImagePath, "/").concat(width, "-").concat(height, "-").concat(fileName))];
+            case 1:
+                _a.sent();
+                return [2 /*return*/, ("images/".concat(width, "-").concat(height, "-").concat(fileName))];
+        }
     });
 }); };
 exports.convertImages = convertImages;
