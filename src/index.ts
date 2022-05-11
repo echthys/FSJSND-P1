@@ -6,7 +6,6 @@ const port = 3000;
 
 app.use('/', routes);
 app.use(express.static(__dirname + '/../public'));
-console.log(__dirname + '/../public');
 
 app.listen(port, () => {
   console.log(`server started at localhost:${port}`);

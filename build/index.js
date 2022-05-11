@@ -9,7 +9,6 @@ var app = (0, express_1.default)();
 var port = 3000;
 app.use('/', index_1.default);
 app.use(express_1.default.static(__dirname + '/../public'));
-console.log(__dirname + '/../public');
 app.listen(port, function () {
     console.log("server started at localhost:".concat(port));
 });
