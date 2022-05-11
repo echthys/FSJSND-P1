@@ -42,9 +42,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.findImages = void 0;
 var fs_1 = require("fs");
 var path_1 = __importDefault(require("path"));
+/**
+ * @description Checks image exists in direcotry
+ * @param {string } image name of image
+ * @param {string} imageDir location of image direcoty
+ * @returns
+ */
 function findImages(image, imageDir) {
     return __awaiter(this, void 0, void 0, function () {
-        var files, i, e_1;
+        var files, i, e;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, fs_1.promises.readdir(path_1.default.resolve(__dirname, imageDir))];
@@ -52,16 +58,16 @@ function findImages(image, imageDir) {
                     files = _a.sent();
                     try {
                         for (i = 0; i < files.length; i++) {
-                            e_1 = files[i];
-                            if (e_1 === image) {
-                                return [2 /*return*/, image];
+                            e = files[i];
+                            if (e === image) {
+                                return [2 /*return*/, true];
                             }
                         }
                     }
                     catch (_b) {
-                        return [2 /*return*/, 'No image found catch'];
+                        return [2 /*return*/, false];
                     }
-                    return [2 /*return*/, 'No image found return'];
+                    return [2 /*return*/, false];
             }
         });
     });

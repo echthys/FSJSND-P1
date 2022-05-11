@@ -44,17 +44,23 @@ var sharp_1 = __importDefault(require("sharp"));
 var path_1 = __importDefault(require("path"));
 var convertImageFolder = '../../public/images';
 var convertImagePath = path_1.default.resolve(__dirname, convertImageFolder);
-var convertImages = function (fileName, width, height) { return __awaiter(void 0, void 0, void 0, function () {
+/**
+ * @description resizes an image
+ * @param {string} fileName - Name of image
+ * @param {number} width - The width the image will be
+ * @param {number} height - The height the image will be
+ * @param {string} newImageName - The name of the updated image
+ * @returns {string} - location of converted image
+ */
+var convertImages = function (fileName, width, height, newImageName) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                console.log(fileName);
-                return [4 /*yield*/, (0, sharp_1.default)(path_1.default.resolve(__dirname, "../../images/".concat(fileName)))
-                        .resize(width, height)
-                        .toFile("".concat(convertImagePath, "/").concat(width, "-").concat(height, "-").concat(fileName))];
+            case 0: return [4 /*yield*/, (0, sharp_1.default)(path_1.default.resolve(__dirname, "../../images/".concat(fileName)))
+                    .resize(width, height)
+                    .toFile("".concat(convertImagePath, "/").concat(width, "-").concat(height, "-").concat(fileName))];
             case 1:
                 _a.sent();
-                return [2 /*return*/, ("images/".concat(width, "-").concat(height, "-").concat(fileName))];
+                return [2 /*return*/, "images/".concat(newImageName)];
         }
     });
 }); };

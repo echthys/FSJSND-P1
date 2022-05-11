@@ -39,47 +39,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var memory_cache_1 = __importDefault(require("memory-cache"));
-var findImages_1 = require("../../utilities/findImages");
-var convertImage_1 = require("../../utilities/convertImage");
-var routes = express_1.default.Router();
-var imageDir = '../../images';
-//API Route
-routes.get('/api', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var params, width, height, fileName, newImageName, imageExists, updatedImageURL;
+var convertImage_1 = require("../utilities/convertImage");
+var path_1 = __importDefault(require("path"));
+var convertImageFolder = '../../public/images';
+var convertImagePath = path_1.default.resolve(__dirname, convertImageFolder);
+it('ensures image converts', function () { return __awaiter(void 0, void 0, void 0, function () {
+    var newImageName, response;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                params = req.query;
-                width = parseInt(params.width) //Convert param to number if possible else asign default value of 200
-                    ? parseInt(params.width)
-                    : 200;
-                height = parseInt(params.height) //Convert param to number if possible else asign default value of 200
-                    ? parseInt(params.height)
-                    : 200;
-                fileName = params.filename;
-                newImageName = "".concat(width, "-").concat(height, "-").concat(fileName);
-                return [4 /*yield*/, (0, findImages_1.findImages)(fileName, imageDir)];
+                newImageName = '200-200-test.jpg';
+                return [4 /*yield*/, (0, convertImage_1.convertImages)('test.jpg', 200, 200, newImageName)];
             case 1:
-                imageExists = _a.sent();
-                if (!imageExists) return [3 /*break*/, 5];
-                if (!memory_cache_1.default.get("".concat(newImageName))) return [3 /*break*/, 2];
-                res.send("<img src=\"images/".concat(newImageName, "\">"));
-                return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, (0, convertImage_1.convertImages)(//convert image and get new url
-                fileName, width, height, newImageName)];
-            case 3:
-                updatedImageURL = _a.sent();
-                memory_cache_1.default.put("".concat(newImageName), "".concat(updatedImageURL)); // update cache
-                res.send("<img src=\"".concat(updatedImageURL, "\">"));
-                _a.label = 4;
-            case 4: return [3 /*break*/, 6];
-            case 5:
-                res.send('Image not found');
-                _a.label = 6;
-            case 6: return [2 /*return*/];
+                response = _a.sent();
+                expect(response).toEqual("images/".concat(newImageName));
+                return [2 /*return*/];
         }
     });
 }); });
-exports.default = routes;
