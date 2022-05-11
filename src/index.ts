@@ -2,7 +2,7 @@ import express from 'express';
 import routes from './routes/api/index';
 
 const app = express();
-const port = 3000;
+const port: number = 3000;
 
 app.use('/', routes);
 app.use(express.static(__dirname + '/../public'));

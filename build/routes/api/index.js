@@ -54,15 +54,16 @@ routes.get('/api', function (req, res) { return __awaiter(void 0, void 0, void 0
                 params = req.query;
                 width = parseInt(params.width) //Convert param to number if possible else asign default value of 200
                     ? parseInt(params.width)
-                    : 200;
+                    : false;
                 height = parseInt(params.height) //Convert param to number if possible else asign default value of 200
                     ? parseInt(params.height)
-                    : 200;
+                    : false;
                 fileName = params.filename;
                 newImageName = "".concat(width, "-").concat(height, "-").concat(fileName);
                 return [4 /*yield*/, (0, findImages_1.findImages)(fileName, imageDir)];
             case 1:
                 imageExists = _a.sent();
+                if (!(width && height)) return [3 /*break*/, 7];
                 if (!imageExists) return [3 /*break*/, 5];
                 if (!memory_cache_1.default.get("".concat(newImageName))) return [3 /*break*/, 2];
                 //check if image in cache
@@ -73,14 +74,18 @@ routes.get('/api', function (req, res) { return __awaiter(void 0, void 0, void 0
                 fileName, width, height, newImageName)];
             case 3:
                 updatedImageURL = _a.sent();
-                memory_cache_1.default.put("".concat(newImageName), "".concat(updatedImageURL)); // update cache
+                memory_cache_1.default.put("".concat(newImageName), "".concat(updatedImageURL)); // Insert image into Cache here after converted
                 res.send("<img src=\"".concat(updatedImageURL, "\">"));
                 _a.label = 4;
             case 4: return [3 /*break*/, 6];
             case 5:
                 res.send('Image not found');
                 _a.label = 6;
-            case 6: return [2 /*return*/];
+            case 6: return [3 /*break*/, 8];
+            case 7:
+                res.send('Incorrect value for width and height');
+                _a.label = 8;
+            case 8: return [2 /*return*/];
         }
     });
 }); });
