@@ -65,9 +65,11 @@ routes.get('/api', function (req, res) { return __awaiter(void 0, void 0, void 0
                 imageExists = _a.sent();
                 if (!imageExists) return [3 /*break*/, 5];
                 if (!memory_cache_1.default.get("".concat(newImageName))) return [3 /*break*/, 2];
+                //check if image in cache
                 res.send("<img src=\"images/".concat(newImageName, "\">"));
                 return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, (0, convertImage_1.convertImages)(//convert image and get new url
+            case 2: return [4 /*yield*/, (0, convertImage_1.convertImages)(
+                //convert image and get new url
                 fileName, width, height, newImageName)];
             case 3:
                 updatedImageURL = _a.sent();

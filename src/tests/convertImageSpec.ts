@@ -1,9 +1,4 @@
-import {convertImages} from '../utilities/convertImage'
-import app from '../index';
-import path from 'path';
-
-const convertImageFolder: string = '../../public/images';
-const convertImagePath = path.resolve(__dirname, convertImageFolder);
+import { convertImages } from '../utilities/convertImage';
 
 it('ensures image converts', async () => {
   const newImageName: string = '200-200-test.jpg';
